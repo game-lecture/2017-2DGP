@@ -10,7 +10,6 @@ class FreeBoy:
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
-    print(RUN_SPEED_PPS)
     TIME_PER_ACTION = 0.5
     ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
     FRAMES_PER_ACTION = 8
@@ -20,7 +19,7 @@ class FreeBoy:
     LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND = 0, 1, 2, 3
 
     def __init__(self):
-        self.x, self.y = 1700, 300
+        self.x, self.y = 0,0
         self.canvas_width = get_canvas_width()
         self.canvas_height = get_canvas_height()
         self.frame = random.randint(0, 7)
@@ -35,7 +34,8 @@ class FreeBoy:
 
     def set_background(self, bg):
         self.bg = bg
-
+        self.x = self.bg.w / 2
+        self.y = self.bg.h / 2
 
     def update(self, frame_time):
         self.life_time += frame_time
@@ -45,6 +45,8 @@ class FreeBoy:
         self.x += (self.xdir * distance)
         self.y += (self.ydir * distance)
 
+        self.x = max(0, self.x)
+        self.y = max(0, self.y)
 
         if self.xdir == -1: self.state = self.LEFT_RUN
         elif self.xdir == 1: self.state = self.RIGHT_RUN
@@ -56,7 +58,7 @@ class FreeBoy:
     def draw(self):
         self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.canvas_width // 2, self.canvas_height // 2)
         #self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x - self.bg.window_left, self.y - self.bg.window_bottom)
-
+        debug_print("%f" % self.x)
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
