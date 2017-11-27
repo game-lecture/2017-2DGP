@@ -45,9 +45,6 @@ class FreeBoy:
         self.x += (self.xdir * distance)
         self.y += (self.ydir * distance)
 
-        self.x = clamp(0, self.x, self.bg.w)
-        self.y = clamp(0, self.y, self.bg.h)
-
 
         if self.xdir == -1: self.state = self.LEFT_RUN
         elif self.xdir == 1: self.state = self.RIGHT_RUN
@@ -57,7 +54,8 @@ class FreeBoy:
 
 
     def draw(self):
-        self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x - self.bg.window_left, self.y - self.bg.window_bottom)
+        self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.canvas_width // 2, self.canvas_height // 2)
+        #self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x - self.bg.window_left, self.y - self.bg.window_bottom)
 
 
     def draw_bb(self):
