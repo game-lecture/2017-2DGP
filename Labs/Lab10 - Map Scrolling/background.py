@@ -50,40 +50,40 @@ class InfiniteBackground:
 
     def draw(self):
         # fill here
-        self.image.clip_draw_to_origin(self.quadrant3_left, self.quadrant3_bottom, self.quadrant3_width, self.quadrant3_height, 0, 0)
-        self.image.clip_draw_to_origin(self.quadrant2_left, self.quadrant2_bottom, self.quadrant2_width, self.quadrant2_height, 0, self.quadrant3_height)
-        self.image.clip_draw_to_origin(self.quadrant4_left, self.quadrant4_bottom, self.quadrant4_width, self.quadrant4_height, self.quadrant3_width, 0)
-        self.image.clip_draw_to_origin(self.quadrant1_left, self.quadrant1_bottom, self.quadrant1_width, self.quadrant1_height, self.quadrant3_width, self.quadrant3_height)
+        self.image.clip_draw_to_origin(self.q3l, self.q3b, self.q3w, self.q3h, 0, 0)                        # quadrant 3
+        self.image.clip_draw_to_origin(self.q2l, self.q2b, self.q2w, self.q2h, 0, self.q3h)                 # quadrant 2
+        self.image.clip_draw_to_origin(self.q4l, self.q4b, self.q4w, self.q4h, self.q3w, 0)                 # quadrant 4
+        self.image.clip_draw_to_origin(self.q1l, self.q1b, self.q1w, self.q1h, self.q3w, self.q3h)          # quadrant 1
 
 
     def update(self, frame_time):
 
         # quadrant 3
-        self.quadrant3_left = (int(self.center_object.x) - self.canvas_width // 2) % self.w
-        self.quadrant3_bottom = (int(self.center_object.y) - self.canvas_height // 2) % self.h
-        self.quadrant3_width = clamp(0, self.w - self.quadrant3_left, self.w)
-        self.quadrant3_height = clamp(0, self.h - self.quadrant3_bottom, self.h)
+        self.q3l = (int(self.center_object.x) - self.canvas_width // 2) % self.w
+        self.q3b = (int(self.center_object.y) - self.canvas_height // 2) % self.h
+        self.q3w = clamp(0, self.w - self.q3l, self.w)
+        self.q3h = clamp(0, self.h - self.q3b, self.h)
 
 
         # quadrant 2
-        self.quadrant2_left = self.quadrant3_left
-        self.quadrant2_bottom = 0
-        self.quadrant2_width = self.quadrant3_width
-        self.quadrant2_height = self.canvas_height - self.quadrant3_height
+        self.q2l = self.q3l
+        self.q2b = 0
+        self.q2w = self.q3w
+        self.q2h = self.canvas_height - self.q3h
 
 
-        # quadrand 4
-        self.quadrant4_left = 0
-        self.quadrant4_bottom = self.quadrant3_bottom
-        self.quadrant4_width = self.canvas_width - self.quadrant3_width
-        self.quadrant4_height = self.quadrant3_height
+        # quadrant 4
+        self.q4l = 0
+        self.q4b = self.q3b
+        self.q4w = self.canvas_width - self.q3w
+        self.q4h = self.q3h
 
 
-        # quadrand 1
-        self.quadrant1_left = 0
-        self.quadrant1_bottom = 0
-        self.quadrant1_width = self.quadrant4_width
-        self.quadrant1_height = self.quadrant2_height
+        # quadrant 1
+        self.q1l = 0
+        self.q1b = 0
+        self.q1w = self.q4w
+        self.q1h = self.q2h
 
 
     def handle_event(self, event):
