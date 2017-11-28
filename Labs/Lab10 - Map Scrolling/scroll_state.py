@@ -19,8 +19,7 @@ def create_world():
     background = Background()
 
     # fill here
-    background.set_center_object(boy)
-    boy.set_background(background)
+
 
 
 def destroy_world():

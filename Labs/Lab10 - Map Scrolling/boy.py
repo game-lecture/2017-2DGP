@@ -45,8 +45,9 @@ class FreeBoy:
         self.x += (self.xdir * distance)
         self.y += (self.ydir * distance)
 
-        self.x = max(0, self.x)
-        self.y = max(0, self.y)
+        # fill here
+
+
 
         if self.xdir == -1: self.state = self.LEFT_RUN
         elif self.xdir == 1: self.state = self.RIGHT_RUN
@@ -56,9 +57,8 @@ class FreeBoy:
 
 
     def draw(self):
-        self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.canvas_width // 2, self.canvas_height // 2)
-        #self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x - self.bg.window_left, self.y - self.bg.window_bottom)
-        debug_print("%f" % self.x)
+        # fill here
+
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
