@@ -4,8 +4,8 @@ import game_framework
 
 
 from boy import FreeBoy as Boy # import Boy class from boy.py
-#from background import FixedBackground as Background
-from background import InfiniteBackground as Background
+from background import FixedBackground as Background
+#from background import InfiniteBackground as Background
 
 
 name = "scroll_state"
